@@ -1,0 +1,527 @@
+<!--hi why are you reading my code, if ur looking to see if its vibecoded, some of it is :P -->
+<!--LISTEN I ONLY HAD AN HOUR -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Quicksand:wght@400;500;600&display=swap');
+
+  :root{
+    --navy:#173D77;
+    --royal:#2E6BE6;
+    --sky:#4FB6F0;
+    --sky-light:#9FDCFA;
+    --powder:#D6EFFC;
+    --cream:#F4FAFF;
+    --ink:#132846;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Cherry Bomb One', sans-serif;
+  }
+
+  section{
+    height:100svh;
+    width:100%;
+    scroll-snap-align:start;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    text-align:center;
+    padding:2rem 1.5rem;
+    overflow:hidden;
+  }
+
+  <!--scroll go wheeeeeeeeeeeeeeeeeee thx cadet code camp i appreciate u teaching me html now-->
+  .scroll-cue{
+    position:absolute;
+    bottom:2rem;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:0.85rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    opacity:0.75;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.4rem;
+    animation:bob 2s ease-in-out infinite;
+    z-index:1;
+  }
+  .scroll-cue svg{ width:20px; height:20px; }
+  @keyframes bob{
+    0%,100%{ transform:translate(-50%,0); }
+    50%{ transform:translate(-50%,8px); }
+  }
+
+  
+  /*balloons*/
+  .balloon-field{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+    overflow:hidden;
+  }
+  .balloon{
+    position:absolute;
+    bottom:-20%;
+    width:60px;
+    height:76px;
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity:0.55;
+    animation:rise linear infinite;
+  }
+  .balloon::after{
+    content:"";
+    position:absolute;
+    bottom:-18px;
+    left:50%;
+    width:2px;
+    height:20px;
+    background:rgba(58,46,57,0.35);
+    transform:translateX(-50%);
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0) translateX(0) rotate(-4deg); }
+    50%{ transform:translateY(-55vh) translateX(20px) rotate(4deg); }
+    100%{ transform:translateY(-115vh) translateX(-10px) rotate(-4deg); }
+  }
+
+  /*pg1*/
+  #cover{
+    background:linear-gradient(160deg, var(--royal) 0%, var(--sky) 100%);
+    color:var(--cream);
+  }
+  #cover .eyebrow{
+    font-family:'Cherry Bomb One', sans-serif;
+    font-size:1rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    opacity:0.9;
+    margin-bottom:0.75rem;
+    position:relative;
+    z-index:1;
+  }
+  #cover h1{
+    font-size:clamp(2.8rem, 10vw, 6rem);
+    font-weight:700;
+    line-height:1.05;
+    text-shadow:0 6px 24px rgba(0,0,0,0.12);
+    position:relative;
+    z-index:1;
+  }
+  #cover .to{
+    margin-top:1.25rem;
+    font-size:clamp(1.3rem, 4vw, 2rem);
+    font-weight:600;
+    position:relative;
+    z-index:1;
+  }
+  #cover .name-blank{
+    display:inline-block;
+    min-width:180px;
+    border-bottom:3px dashed rgba(255,255,255,0.75);
+    padding:0 0.3em;
+  }
+
+  /*pg2*/
+  #message{
+    background:linear-gradient(160deg, var(--sky-light) 0%, var(--powder) 100%);
+  }
+  #message .card-note{
+    background:var(--cream);
+    border-radius:28px;
+    padding:2.5rem 2rem;
+    max-width:560px;
+    width:100%;
+    box-shadow:0 20px 50px rgba(0,0,0,0.12);
+    position:relative;
+    z-index:1;
+  }
+  #message .card-note h2{
+    font-size:clamp(1.6rem, 5vw, 2.2rem);
+    color:var(--royal);
+    margin-bottom:1.25rem;
+  }
+  #message .placeholder-text{
+    font-size:1.1rem;
+    line-height:1.7;
+    color:var(--ink);
+    opacity:0.85;
+  }
+  #message .placeholder-text em{
+    font-style:normal;
+    background:linear-gradient(transparent 60%, var(--sky-light) 60%);
+    padding:0 0.15em;
+  }
+  #message .sign-off{
+    margin-top:1.5rem;
+    font-family:'Cherry Bomb One', sans-serif;
+    font-weight:600;
+    color:var(--sky);
+  }
+
+  /*pg3*/
+  #memory{
+    background:linear-gradient(160deg, var(--sky) 0%, var(--navy) 100%);
+    color:var(--cream);
+  }
+  #memory2{
+    background:linear-gradient(160deg, var(--royal) 0%, var(--navy) 100%);
+    color:var(--cream);
+  }
+  #memory h2, #memory2 h2{
+    font-size:clamp(1.6rem, 5.5vw, 2.4rem);
+    margin-bottom:1.75rem;
+    position:relative;
+    z-index:1;
+  }
+  .photo-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.5rem 1.25rem;
+    justify-content:center;
+    align-items:flex-start;
+    max-width:680px;
+    width:100%;
+    position:relative;
+    z-index:1;
+  }
+  .photo-frame{
+    width:clamp(120px, 30vw, 165px);
+    aspect-ratio:4/5;
+    background:var(--cream);
+    border-radius:14px;
+    padding:10px 10px 30px 10px;
+    box-shadow:0 16px 36px rgba(0,0,0,0.22);
+    position:relative;
+  }
+  .photo-frame:nth-child(4n+1){ transform:rotate(-6deg); }
+  .photo-frame:nth-child(4n+2){ transform:rotate(4deg); margin-top:1.4rem; }
+  .photo-frame:nth-child(4n+3){ transform:rotate(-3deg); margin-top:0.4rem; }
+  .photo-frame:nth-child(4n+4){ transform:rotate(6deg); margin-top:1.8rem; }
+  .photo-frame:nth-child(4n+5){ transform:rotate(-5deg); margin-top:0.8rem; }
+  .photo-frame:nth-child(4n+6){ transform:rotate(3deg); margin-top:1.2rem; }
+  .photo-frame .placeholder-img{
+    width:100%;
+    height:100%;
+    border-radius:8px;
+    background:
+      repeating-linear-gradient(45deg, #fff 0 10px, #DCEFFB 10px 20px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--sky);
+    font-family:'Cherry Bomb One',sans-serif;
+    font-size:0.75rem;
+    text-align:center;
+    padding:0.6rem;
+  }
+  .photo-frame .caption{
+    position:absolute;
+    bottom:7px;
+    left:0;
+    right:0;
+    text-align:center;
+    font-family:'Cherry Bomb One', sans-serif;
+    color:var(--ink);
+    font-size:0.7rem;
+  }
+
+  /*pg4*/
+  #wish{
+    background:linear-gradient(160deg, var(--navy) 0%, var(--royal) 100%);
+    color:var(--cream);
+  }
+  #wish h2{
+    font-size:clamp(1.8rem, 6vw, 2.6rem);
+    margin-bottom:1rem;
+    position:relative;
+    z-index:1;
+  }
+  #wish p{
+    max-width:480px;
+    font-size:1.15rem;
+    line-height:1.7;
+    opacity:0.92;
+    z-index:1;
+  }
+
+  /*pg5*/
+  #finale{
+    background:linear-gradient(160deg, var(--sky) 0%, var(--sky-light) 100%);
+  }
+  #finale h2{
+    font-size:clamp(2rem, 7vw, 3.2rem);
+    color:var(--royal);
+    margin-bottom:0.5rem;
+    position:relative;
+    z-index:1;
+  }
+  #finale .sub{
+    font-size:1.1rem;
+    margin-bottom:2rem;
+    opacity:0.8;
+    position:relative;
+    z-index:1;
+  }
+
+  .cake-wrap{
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    z-index:1;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .cake{
+    position:relative;
+    width:150px;
+  }
+  .flame{
+    width:10px;
+    height:16px;
+    background:radial-gradient(ellipse at bottom, #FFD966 0%, #FF6FA5 80%);
+    border-radius:50% 50% 50% 50% / 65% 65% 35% 35%;
+    margin:0 auto;
+    transform-origin:bottom center;
+    animation:flicker 1.4s ease-in-out infinite;
+    box-shadow:0 0 12px 4px rgba(255,180,80,0.6);
+  }
+  .flame.out{
+    animation:none;
+    opacity:0;
+    transition:opacity 0.4s ease;
+  }
+  @keyframes flicker{
+    0%,100%{ transform:scaleY(1) rotate(-2deg); }
+    50%{ transform:scaleY(1.15) rotate(2deg); }
+  }
+  .wick{
+    width:3px;
+    height:14px;
+    background:#8a6b4f;
+    margin:0 auto;
+  }
+  .candle{
+    width:10px;
+    height:34px;
+    background:repeating-linear-gradient(180deg, #63B4FF 0 6px, #FFF8F0 6px 12px);
+    margin:0 auto;
+    border-radius:2px;
+  }
+  .tier{
+    border-radius:10px;
+    margin:0 auto;
+    box-shadow:inset 0 -6px 0 rgba(0,0,0,0.06);
+  }
+  .tier1{ width:70px; height:34px; background:var(--powder); }
+  .tier2{ width:110px; height:38px; background:var(--royal); margin-top:-4px; }
+  .tier3{ width:150px; height:42px; background:var(--sky); margin-top:-4px; }
+  .plate{ width:170px; height:8px; background:var(--ink); opacity:0.15; border-radius:50%; margin-top:4px; }
+
+  .hint{
+    margin-top:1.75rem;
+    font-family:'Cherry Bomb One', sans-serif;
+    font-size:0.95rem;
+    color:var(--ink);
+    opacity:0.6;
+    position:relative;
+    z-index:1;
+  }
+
+  .confetti-piece{
+    position:fixed;
+    top:-10px;
+    width:9px;
+    height:14px;
+    z-index:5;
+    pointer-events:none;
+    animation:confetti-fall linear forwards;
+  }
+  @keyframes confetti-fall{
+    to{ transform:translateY(105vh) rotate(540deg); opacity:0.9; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .balloon, .scroll-cue, .flame{ animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="balloon-field" id="balloonField"></div>
+
+<section id="cover">
+  <div class="eyebrow">ur getting unc just like me</div>
+  <h1>Happy Birthday!</h1>
+  <div class="to">to my one of my favorite cadets, <span class="name-blank">Letizia!!</span></div>
+  <div class="scroll-cue">
+    scroll down
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </div>
+</section>
+
+<section id="message">
+  <div class="card-note">
+    <h2>Dear Letizia,</h2>
+    <p class="placeholder-text">
+      You have been such a wonderful cadet and friend to me ever since ruse afx.
+      you are such a<em> cool person </em> and i hope you are excited for another year!!<em> always remember to put yourself first </em>
+      and that you are an <em> incredible person who will accomplish everything you set out to do!! </em>
+      go get that promotion!! lmao ur old now what a <em>loser</em>
+    </p>
+    <p class="sign-off">— from your favourite corporal</p>
+  </div>
+</section>
+
+<section id="memory">
+  <h2>A few random photos i dug out from somewhere</h2>
+  <div class="photo-grid">
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 1 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 2 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 3 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 4 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 5 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 6 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+  </div>
+</section>
+
+<section id="memory2">
+  <h2>...and a few more</h2>
+  <div class="photo-grid">
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 7 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 8 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 9 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 10 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 11 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+    <div class="photo-frame">
+      <div class="placeholder-img">[ photo 12 ]</div>
+      <div class="caption">[ caption ]</div>
+    </div>
+  </div>
+</section>
+
+<section id="wish">
+  <h2>you got this fr</h2>
+  <p>wishing you all the best and luck in whatever u wanna do! dont die that would be bad</p>
+</section>
+
+<section id="finale">
+  <h2>Make a wish!</h2>
+  <div class="sub">tap the candle</div>
+  <div class="cake-wrap" id="cakeWrap">
+    <div class="cake">
+      <div class="flame" id="flame"></div>
+      <div class="wick"></div>
+      <div class="candle"></div>
+      <div class="tier tier1"></div>
+      <div class="tier tier2"></div>
+      <div class="tier tier3"></div>
+    </div>
+  </div>
+  <div class="hint" id="hint">🎂 happy birthday, letizia!! 🎂</div>
+</section>
+
+<script>
+  <!--balloons what the fuck did i js cook never cook again-->
+  const colors = ['#2E6BE6','#4FB6F0','#9FDCFA','#173D77','#D6EFFC','#0E1F3D'];
+  const field = document.getElementById('balloonField');
+  const balloonCount = 10;
+  for(let i=0;i<balloonCount;i++){
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.style.left = (Math.random()*94 + 2) + '%';
+    b.style.background = colors[i % colors.length];
+    const duration = 14 + Math.random()*10;
+    b.style.animationDuration = duration + 's';
+    b.style.animationDelay = (-Math.random()*duration) + 's';
+    b.style.width = (46 + Math.random()*26) + 'px';
+    b.style.height = (parseFloat(b.style.width) * 1.27) + 'px';
+    field.appendChild(b);
+  }
+
+  const flame = document.getElementById('flame');
+  const hint = document.getElementById('hint');
+  const cakeWrap = document.getElementById('cakeWrap');
+  let blownOut = false;
+
+  function launchConfetti(){
+    const count = 60;
+    for(let i=0;i<count;i++){
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left = (Math.random()*100) + 'vw';
+      piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+      piece.style.animationDuration = (2.5 + Math.random()*2) + 's';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      document.body.appendChild(piece);
+      setTimeout(()=>piece.remove(), 5000);
+    }
+  }
+
+  cakeWrap.addEventListener('click', () => {
+    if(blownOut) return;
+    blownOut = true;
+    flame.classList.add('out');
+    hint.textContent = "🎉 ur officially unc, theres nothing more to this birthday card, hf with back pain 🎉";
+    launchConfetti();
+  });
+</script>
+
+</body>
+</html>
